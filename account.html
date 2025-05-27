@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details - $USD$ Mining Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans min-h-screen">
+    <!-- Header -->
+    <!-- Account Details Section -->
+    <main class="container mx-auto py-12">
+        <h2 class="text-3xl font-bold text-center mb-8">Account Details</h2>
+        <div class="bg-gray-800 p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+            <div class="space-y-6">
+                <!-- Username -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300">Username</label>
+                        <p id="username" class="text-lg font-semibold text-gray-100">user123</p>
+                    </div>
+                    <button onclick="copyToClipboard('username', 'Username copied!')" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">Copy</button>
+                </div>
+                <!-- Email -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300">Email</label>
+                        <p id="email" class="text-lg font-semibold text-gray-100">USD1431@gmail.co</p>
+                    </div>
+                    <button onclick="copyToClipboard('email', 'Email copied!')" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">Copy</button>
+                </div>
+                <!-- Wallet Address -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300">Account</label>
+                        <p id="walletAddress" class="text-lg font-semibold text-gray-100 font-mono">219029980842</p>
+                    </div>
+                    <button onclick="copyToClipboard('walletAddress', 'Wallet address copied!')" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">Copy</button>
+                </div>
+                <!-- Balance -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300">Amount</label>
+                        <p id="balance" class="text-lg font-semibold text-gray-100">999.0 USD</p>
+                    </div>
+                    <button onclick="copyToClipboard('balance', 'Balance copied!')" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">Copy</button>
+                </div>
+            </div>
+            <p id="copyMessage" class="text-green-400 text-sm mt-4 text-center hidden">Copied!</p>
+        </div>
+    </main>
+
+    <script>
+        // Copy to clipboard function
+        function copyToClipboard(elementId, message) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const copyMessage = document.getElementById('copyMessage');
+                copyMessage.textContent = message;
+                copyMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    copyMessage.classList.add('hidden');
+                }, 2000); // Hide message after 2 seconds
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                const copyMessage = document.getElementById('copyMessage');
+                copyMessage.textContent = 'Failed to copy!';
+                copyMessage.classList.remove('hidden');
+                copyMessage.classList.remove('text-green-400');
+                copyMessage.classList.add('text-red-400');
+                setTimeout(() => {
+                    copyMessage.classList.add('hidden');
+                    copyMessage.classList.remove('text-red-400');
+                    copyMessage.classList.add('text-green-400');
+                }, 2000);
+            });
+        }
+
+        // Simulated user data (replace with actual backend data)
+        const userData = {
+            username: 'user123',
+            walletAddress: '219029980842',
+            bankname: 'Lead Bank',
+            amount: '999.0 USD'
+        };
+
+        // Populate user data
+        document.getElementById('username').textContent = userData.username;
+        document.getElementById('account').textContent = userData.account;
+        document.getElementById('amount').textContent = userData.amount;
+    </script>
+</body>
+</html>

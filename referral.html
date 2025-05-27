@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .referral-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        .referral-link {
+            font-size: 1.1em;
+            color: #007bff;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .social-share {
+            margin-top: 20px;
+        }
+
+        .social-share a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.2em;
+        }
+
+        .social-share a:hover {
+            color: #0056b3;
+        }
+
+        .copied {
+            color: #28a745;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Invite Friends, Earn Rewards!</h1>
+        <p>Share your unique referral link with friends and earn rewards when they sign up!</p>
+        
+        <div class="referral-box">
+            <div class="referral-link" id="referralLink">https://example.com/ref/12345</div>
+            <button class="btn" onclick="copyReferralLink()">Copy Referral Link</button>
+            <div class="copied" id="copiedMessage">Link copied to clipboard!</div>
+        </div>
+
+        <div class="social-share">
+            <p>Share via:</p>
+            <a href="#" onclick="shareOnTwitter()">Twitter</a>
+            <a href="#" onclick="shareOnFacebook()">Facebook</a>
+            <a href="#" onclick="shareOnWhatsApp()">WhatsApp</a>
+        </div>
+    </div>
+
+    <script>
+        // Mock user ID (replace with actual user ID from your backend)
+        const userId = "12345";
+        const baseUrl = "https://example.com/ref/";
+        const referralLink = `${baseUrl}${userId}`;
+
+        // Set the referral link in the HTML
+        document.getElementById("referralLink").textContent = referralLink;
+
+        // Copy referral link to clipboard
+        function copyReferralLink() {
+            navigator.clipboard.writeText(referralLink).then(() => {
+                const copiedMessage = document.getElementById("copiedMessage");
+                copiedMessage.style.display = "block";
+                setTimeout(() => {
+                    copiedMessage.style.display = "none";
+                }, 2000);
+            });
+        }
+
+        // Share on Twitter
+        function shareOnTwitter() {
+            const text = encodeURIComponent("Join me on this awesome platform and get rewarded! " + referralLink);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, "_blank");
+        }
+
+        // Share on Facebook
+        function shareOnFacebook() {
+            const url = encodeURIComponent(referralLink);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+        }
+
+        // Share on WhatsApp
+        function shareOnWhatsApp() {
+            const text = encodeURIComponent("Check out this platform and join using my referral link: " + referralLink);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
+        }
+    </script>
+</body>
+</html>

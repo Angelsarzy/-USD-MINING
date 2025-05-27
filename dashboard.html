@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USD Mining Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<header>
+        <nav class="navbar">
+        <a href="#" class="navbar-brand">$USD$ Free Miner</a>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Register</a></li>
+            <li><a href="payment.html">Pay</a></li>
+            <li><a href="referral.html">Refer</a></li>
+            <li><a href="profile.html">Me</a></li>
+            
+        </ul>
+                    <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+            }
+
+            .navbar {
+                background-color: #333;
+                padding: 15px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .navbar-brand {
+                color: white;
+                font-size: 24px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+            }
+
+            .nav-links li a {
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                transition: color 0.3s;
+            }
+
+            .nav-links li a:hover {
+                color: #00aaff;
+            }
+
+            .hamburger {
+                display: none;
+                flex-direction: column;
+                cursor: pointer;
+            }
+
+            .hamburger span {
+                background-color: white;
+                width: 25px;
+                height: 3px;
+                margin: 2px 0;
+                transition: all 0.3s;
+            }
+
+            @media screen and (max-width: 768px) {
+                .hamburger {
+                    display: flex;
+                }
+
+                .nav-links {
+                    display: none;
+                    width: 100%;
+                    position: absolute;
+                    top: 70px;
+                    left: 0;
+                    background-color: #333;
+                    flex-direction: column;
+                    padding: 20px;
+                    text-align: center;
+                }
+
+                .nav-links.active {
+                    display: flex;
+                }
+
+                .nav-links li {
+                    margin: 10px 0;
+                }
+            }
+        </style>
+
+</header>
+
+<body class="bg-gray-900 text-white min-h-screen font-sans">
+    <!-- Header -->
+    <header class="bg-gray-800 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">USD Mining Dashboard</h1>
+            <div class="flex items-center space-x-4">
+                <span id="walletBalance" class="text-lg">Wallet: 0.0000 USD</span>
+                <a href="withdrawsuccess.html" class="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-700 transition">Withdraw</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card: Hash Rate -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-2">Hash Rate</h2>
+            <p id="hashRate" class="text-3xl font-bold text-green-400">0.0 MH/s</p>
+            <p class="text-gray-400 text-sm mt-1">Current mining speed</p>
+        </div>
+
+        <!-- Card: Active Miners -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-2">Active Miners</h2>
+            <p id="activeMiners" class="text-3xl font-bold text-blue-400">0</p>
+            <p class="text-gray-400 text-sm mt-1">Miners online</p>
+        </div>
+
+        <!-- Card: Mined Blocks -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-2">Mined Blocks</h2>
+            <p id="minedBlocks" class="text-3xl font-bold text-yellow-400">0</p>
+            <p class="text-gray-400 text-sm mt-1">Total blocks mined</p>
+        </div>
+
+        <!-- Chart: Hash Rate Over Time -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg col-span-1 md:col-span-2 lg:col-span-3">
+            <h2 class="text-xl font-semibold mb-4">Hash Rate Trend (Last 24h)</h2>
+            <canvas id="hashRateChart" class="w-full h-64"></canvas>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg col-span-1 md:col-span-2 lg:col-span-3">
+            <h2 class="text-xl font-semibold mb-4">Recent Transactions</h2>
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="text-gray-400">
+                        <th class="py-2">Transaction ID</th>
+                        <th class="py-2">Amount</th>
+                        <th class="py-2">Date</th>
+                        <th class="py-2">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionTable">
+                    <!-- Transactions will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        // Simulated dynamic data updates
+        function updateDashboard() {
+            // Update Hash Rate
+            const hashRate = (Math.random() * 100).toFixed(2);
+            document.getElementById('hashRate').textContent = `${hashRate} MH/s`;
+
+            // Update Active Miners
+            const activeMiners = Math.floor(Math.random() * 10) + 1;
+            document.getElementById('activeMiners').textContent = activeMiners;
+
+            // Update Mined Blocks
+            const minedBlocks = Math.floor(Math.random() * 100);
+            document.getElementById('minedBlocks').textContent = minedBlocks;
+
+            // Update Wallet Balance
+            const walletBalance = (Math.random() * 0.1).toFixed(4);
+            document.getElementById('walletBalance').textContent = `Wallet: ${walletBalance} USD`;
+        }
+
+        // Simulated transaction data
+        const transactions = [
+            { id: 'TXN' + Math.random().toString(36).substr(2, 9).toUpperCase(), amount: '0.0023 USD', date: '2025-05-27 11:30 AM', status: 'Completed' },
+            { id: 'TXN' + Math.random().toString(36).substr(2, 9).toUpperCase(), amount: '0.0018 USD', date: '2025-05-27 10:15 AM', status: 'Pending' },
+            { id: 'TXN' + Math.random().toString(36).substr(2, 9).toUpperCase(), amount: '0.0035 USD', date: '2025-05-26 09:45 PM', status: 'Completed' }
+        ];
+
+        function populateTransactions() {
+            const tableBody = document.getElementById('transactionTable');
+            tableBody.innerHTML = '';
+            transactions.forEach(tx => {
+                const row = document.createElement('tr');
+                row.className = 'border-t border-gray-700';
+                row.innerHTML = `
+                    <td class="py-2">${tx.id}</td>
+                    <td class="py-2">${tx.amount}</td>
+                    <td class="py-2">${tx.date}</td>
+                    <td class="py-2 ${tx.status === 'Completed' ? 'text-green-400' : 'text-yellow-400'}">${tx.status}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Chart.js for Hash Rate Trend
+        const ctx = document.getElementById('hashRateChart').getContext('2d');
+        const hashRateChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+                datasets: [{
+                    label: 'Hash Rate (MH/s)',
+                    data: Array.from({ length: 24 }, () => Math.random() * 100),
+                    borderColor: '#34D399',
+                    backgroundColor: 'rgba(52, 211, 153, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: '#D1D5DB' },
+                        grid: { color: '#374151' }
+                    },
+                    x: {
+                        ticks: { color: '#D1D5DB' },
+                        grid: { color: '#374151' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#D1D5DB' } }
+                }
+            }
+        });
+
+        // Initial data load
+        updateDashboard();
+        populateTransactions();
+
+        // Simulate real-time updates every 5 seconds
+        setInterval(() => {
+            updateDashboard();
+            hashRateChart.data.datasets[0].data = Array.from({ length: 24 }, () => Math.random() * 100);
+            hashRateChart.update();
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .profile-card { max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        .profile-card h2 { margin-bottom: 20px; }
+        .profile-card p { font-size: 16px; }
+        .error { color: red; }
+        .logout-btn { background-color: #ff4444; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <h2>User Profile</h2>
+        <div id="profile-info"></div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        // Check if user is logged in and fetch profile data
+        async function loadProfile() {
+            const token = localStorage.getItem('token'); // Assume token is stored on login
+            if (!token) {
+                window.location.href = 'login.html'; // Redirect to login if not authenticated
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/profile', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+
+                if (response.ok) {
+                    document.getElementById('profile-info').innerHTML = `
+                        <p><strong>Name:</strong> ${data.name}</p>
+                        <p><strong>Email:</strong> ${data.email}</p>
+                        <p><strong>Joined:</strong> ${new Date(data.createdAt).toLocaleDateString()}</p>
+                    `;
+                } else {
+                    document.getElementById('profile-info').innerHTML = `<p class="error">${data.message || 'Error loading profile'}</p>`;
+                }
+            } catch (error) {
+                document.getElementById('profile-info').innerHTML = `<p class="error">Failed to load profile</p>`;
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        }
+
+        // Load profile on page load
+        window.onload = loadProfile;
+        
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const app = express();
+
+app.use(express.json());
+
+// Middleware to verify JWT token
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+
+    if (!token) return res.status(401).json({ message: 'Unauthorized' });
+
+    jwt.verify(token, 'your-secret-key', (err, user) => {
+        if (err) return res.status(403).json({ message: 'Invalid token' });
+        req.user = user; // Attach user data to request
+        next();
+    });
+}
+
+// Profile endpoint
+app.get('/api/profile', authenticateToken, (req, res) => {
+    // Fetch user data from database using req.user.id
+    const user = {
+        name: 'John Doe', // Replace with actual DB query
+        email: 'john@example.com',
+        createdAt: new Date()
+    };
+    res.json(user);
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
+
+
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="login-form">
+        <input type="email" id="email" placeholder="Email" required><br><br>
+        <input type="password" id="password" placeholder="Password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+    <p id="error" style="color: red;"></p>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('token', data.token);
+                    window.location.href = 'profile.html';
+                } else {
+                    document.getElementById('error').textContent = data.message || 'Login failed';
+                }
+            } catch (error) {
+                document.getElementById('error').textContent = 'Error connecting to server';
+            }
+        });
+        
+        app.post('/api/login', (req, res) => {
+    const { email, password } = req.body;
+    // Validate credentials (replace with actual DB check)
+    if (email === 'john@example.com' && password === 'password123') {
+        const token = jwt.sign({ id: 'user123' }, 'your-secret-key', { expiresIn: '1h' });
+        res.json({ token });
+    } else {
+        res.status(401).json({ message: 'Invalid credentials' });
+    }
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to $USD$ Mining Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans min-h-screen">
+    <!-- Header -->
+    <header class="bg-gray-800 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">$USD$ Mining Platform</h1>
+            <nav class="flex space-x-4">
+                <a href="/login" class="text-blue-400 hover:underline">Login</a>
+                <a href="/signup" class="text-blue-400 hover:underline">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Welcome Section -->
+    <section class="container mx-auto py-12 text-center">
+        <h2 class="text-4xl font-bold mb-4">Welcome to Your $USD$ Mining Journey</h2>
+        <p class="text-gray-300 max-w-2xl mx-auto mb-6">Join our platform to start mining cryptocurrencies with ease. Choose a plan, track your progress, and withdraw your earnings securely.</p>
+        <div class="space-x-4">
+            <a href="signup.html" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-200">Get Started</a>
+            <a href="#pricing" class="bg-gray-600 text-white px-6 py-2 rounded-md hover:bg-gray-700 transition duration-200">View Plans</a>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="container mx-auto py-12">
+        <h2 class="text-3xl font-bold text-center mb-8">Our Mining Plans</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Basic Plan -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                <h3 class="text-xl font-semibold mb-2">Basic Plan</h3>
+                <p class="text-2xl font-bold text-green-400">$99/month</p>
+                <ul class="text-gray-300 text-sm mt-4 space-y-2">
+                    <li>10 MH/s Hash Rate</li>
+                    <li>1-Year Contract</li>
+                    <li>24/7 Support</li>
+                    <li>Basic Analytics</li>
+                </ul>
+                <a href="/signup" class="mt-6 inline-block bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-200">Choose Plan</a>
+            </div>
+            <!-- Pro Plan -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                <h3 class="text-xl font-semibold mb-2">Pro Plan</h3>
+                <p class="text-2xl font-bold text-green-400">$599/month</p>
+                <ul class="text-gray-300 text-sm mt-4 space-y-2">
+                    <li>50 MH/s Hash Rate</li>
+                    <li>1-Year Contract</li>
+                    <li>Priority Support</li>
+                    <li>Advanced Analytics</li>
+                </ul>
+                <a href="signup.html" class="mt-6 inline-block bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-200">Choose Plan</a>
+            </div>
+            <!-- Enterprise Plan -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                <h3 class="text-xl font-semibold mb-2">Enterprise Plan</h3>
+                <p class="text-2xl font-bold text-green-400">$999`/month</p>
+                <ul class="text-gray-300 text-sm mt-4 space-y-2">
+                    <li>100 MH/s Hash Rate</li>
+                    <li>Custom Contract</li>
+                    <li>Dedicated Support</li>
+                    <li>Full Analytics Suite</li>
+                </ul>
+                <a href="/signup" class="mt-6 inline-block bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-200">Choose Plan</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pop-Up Modal -->
+    <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-lg max-w-sm w-full text-center">
+            <h3 class="text-xl font-bold mb-4">Special Offer!</h3>
+            <p class="text-gray-300 mb-4">Sign up today and get 10% off your first month’s mining plan!</p>
+            <div class="space-x-4">
+                <a href="signup.html" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">Claim Offer</a>
+                <button onclick="closePopup()" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show pop-up after 5 seconds
+        setTimeout(() => {
+            document.getElementById('popup').classList.remove('hidden');
+        }, 5000);
+
+        // Close pop-up function
+        function closePopup() {
+            document.getElementById('popup').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

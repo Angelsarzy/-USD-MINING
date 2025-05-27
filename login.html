@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Crypto Mining Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen font-sans">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 class="text-2xl font-bold text-center mb-6">Login to Your Account</h1>
+        <div class="space-y-4">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-300">Username or Email</label>
+                <input type="text" id="username" class="mt-1 w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your username or email" required>
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
+                <input type="password" id="password" class="mt-1 w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" required>
+            </div>
+            <button onclick="handleLogin()" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200">Log In</button>
+            <p class="text-center text-gray-400 text-sm mt-4">
+                Don't have an account? <a href="signup.html" class="text-blue-400 hover:underline">Sign up</a>
+            </p>
+        </div>
+        <p id="errorMessage" class="text-red-400 text-sm mt-4 text-center hidden">Please fill in all fields.</p>
+    </div>
+    <script>
+        function handleLogin() {
+            const username = document.getElementById('username').value;
+            const errorMessage = document.getElementById('errorMessage');
+            let password = ("usd1431");
+
+            if (!username || !password) {
+                errorMessage.classList.remove('hidden');
+                return;
+            }
+
+            errorMessage.classList.add('hidden');
+            // Simulate login redirect (replace with actual authentication logic)
+            window.location.href = '/dashboard';
+        }
+    </script>
+</body>
+</html>

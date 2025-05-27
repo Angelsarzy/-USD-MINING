@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://cdn.tailwindcss.com"></script>
+    <title>$USD$ MINING }FREE!!{ </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #00aaff;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            background-color: white;
+            width: 25px;
+            height: 3px;
+            margin: 2px 0;
+            transition: all 0.3s;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: #333;
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">$USD$ Free Miner</a>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="login.html"><div
+  aria-label="User Login Button"
+  tabindex="0"
+  role="button"
+  class="user-profile"
+>
+  <div class="user-profile-inner">
+    <svg
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <g data-name="Layer 2" id="Layer_2">
+        <path
+          d="m15.626 11.769a6 6 0 1 0 -7.252 0 9.008 9.008 0 0 0 -5.374 8.231 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 9.008 9.008 0 0 0 -5.374-8.231zm-7.626-4.769a4 4 0 1 1 4 4 4 4 0 0 1 -4-4zm10 14h-12a1 1 0 0 1 -1-1 7 7 0 0 1 14 0 1 1 0 0 1 -1 1z"
+        ></path>
+      </g>
+    </svg>
+    <p>Log In</p>
+  </div>
+</div>
+</a></li>
+<!-- loginn button -->
+ <style>
+ .user-profile {
+  width: 131px;
+  height: 51px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  background: linear-gradient(
+    to bottom right,
+    #2e8eff 0%,
+    rgba(46, 142, 255, 0) 30%
+  );
+  background-color: rgba(46, 142, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-profile:hover,
+.user-profile:focus {
+  background-color: rgba(46, 142, 255, 0.7);
+  box-shadow: 0 0 10px rgba(46, 142, 255, 0.5);
+  outline: none;
+}
+
+.user-profile-inner {
+  width: 127px;
+  height: 47px;
+  border-radius: 13px;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.user-profile-inner svg {
+  width: 27px;
+  height: 27px;
+  fill: #fff;
+}
+</style>
+<!-- login  button end  -->
+
+            <li><a href="signup.html">Register</a></li>
+            <li><a href="payment.html">Pay</a></li>
+            <li><a href="referral.html">Refer</a></li>
+            <li><a href="profile.html">Me</a></li>
+            
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <div class="max-w-2xl w-100% p-6 bg-gray-800 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-center mb-6">$USD$ MINING FREE</h1>
+    <div id="mining-section" class="mb-8">
+      <p class="text-lg">Mining Status: <span id="status" class="text-green-400">Active</span></p>
+      <p class="text-lg">Mined Balance: <span id="balance">$0.0000</span>USD</p>
+      <button id="start-mining" class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Start Mining</button>
+      <button id="stop-mining" class="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 rounded hidden">Stop Mining</button>
+    </div>
+    <div id="withdraw-section">
+      <h2 class="text-xl font-semibold mb-4">Withdraw to Bank</h2>
+      <form id="withdraw-form" class="space-y-4">
+        <div>
+          <label for="bank-account" class="block text-sm">Bank Account Number</label>
+          <input type="text" id="bank-account" class="w-full p-2 bg-gray-700 rounded" placeholder="Enter account number" >
+        </div>
+        <div>
+          <label for="amount" class="block text-sm">Amount to Withdraw (USD)</label>
+          <input type="number" id="amount" class="w-full p-2 bg-gray-700 rounded" placeholder="Enter amount" >
+        </div>
+        <button type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded" disabled><a href="withdrawsuccess.html">Withdraw</a></button>
+      </form>
+      <p id="withdraw-message" class="mt-4 text-sm text-gray-400"></p>
+    </div>
+  </div>
+
+  <script>
+    let balance = 0;
+    let miningInterval = null;
+    const balanceDisplay = document.getElementById('balance');
+    const statusDisplay = document.getElementById('status');
+    const startButton = document.getElementById('start-mining');
+    const stopButton = document.getElementById('stop-mining');
+    const withdrawForm = document.getElementById('withdraw-form');
+    const withdrawMessage = document.getElementById('withdraw-message');
+
+    function updateBalance() {
+      balance += 0.0001; // Simulate mining by adding small increments
+      balanceDisplay.textContent = balance.toFixed(4);
+    }
+
+    startButton.addEventListener('click', () => {
+      if (!miningInterval) {
+        miningInterval = setInterval(updateBalance, 1000); // Update every second
+        statusDisplay.textContent = 'Active';
+        statusDisplay.classList.add('text-green-400');
+        startButton.classList.add('hidden');
+        stopButton.classList.remove('hidden');
+      }
+    });
+
+    stopButton.addEventListener('click', () => {
+      if (miningInterval) {
+        clearInterval(miningInterval);
+        miningInterval = null;
+        statusDisplay.textContent = 'Stopped';
+        statusDisplay.classList.remove('text-green-400');
+        statusDisplay.classList.add('text-red-400');
+        startButton.classList.remove('hidden');
+        stopButton.classList.add('hidden');
+      }
+    });
+
+    withdrawForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      withdrawMessage.textContent = 'This is a demo. No real withdrawals are processed.';
+    });
+  </script>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

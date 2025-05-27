@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations!!!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+        <svg class="w-16 h-16 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <h1 class="text-2xl font-bold text-gray-800 mt-4">Withdrawal Successful!</h1>
+        <p class="text-gray-600 mt-2">Your withdrawal has been processed successfully. The funds will be transferred to your account shortly.</p>
+        <p class="text-gray-500 mt-1">Transaction ID: <span id="transactionId" class="font-mono">TXN123456789</span></p>
+        <a href="dashboard.html" class="mt-6 inline-block bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-200">Back to Dashboard</a>
+    </div>
+    <script>
+        // Generate a random transaction ID for display
+        const transactionId = 'TXN' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        document.getElementById('transactionId').textContent = transactionId;
+    </script>
+</body>
+</html>
